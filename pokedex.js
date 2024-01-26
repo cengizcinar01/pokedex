@@ -13,3 +13,15 @@ fetch(`https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEDEX}`)
         allPokemons = data.results;
         console.log(data);
     });
+
+async function fetchPokemonDataBeforeRedirect(id) {
+    try {
+        const [pokemon, pokemonSpecies] = await Promise.all([
+            fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) => res.json()),
+            fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`).then((res) => res.json()),
+        ]);
+        return true;
+    } catch (error) {
+        console.error('Failed to fetch Pokemon data before redirect');
+    }
+}
