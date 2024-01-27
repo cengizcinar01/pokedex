@@ -27,13 +27,13 @@ async function fetchPokemonDataBeforeRedirect(id) {
 }
 
 function displayPokemons(pokemon) {
-    listWrapper.innerHTML = "";
-  
+    listWrapper.innerHTML = '';
+
     pokemon.forEach((pokemon) => {
-      const pokemonID = pokemon.url.split("/")[6];
-      const listItem = document.createElement("div");
-      listItem.className = "list-item";
-      listItem.innerHTML = `
+        const pokemonID = pokemon.url.split('/')[6];
+        const listItem = document.createElement('div');
+        listItem.className = 'list-item';
+        listItem.innerHTML = `
           <div class="number-wrap">
               <p class="caption-fonts">#${pokemonID}</p>
           </div>
@@ -44,3 +44,14 @@ function displayPokemons(pokemon) {
               <p class="body3-fonts">#${pokemon.name}</p>
           </div>
       `;
+
+        listItem.addEventListener('click', async () => {
+            const success = await fetchPokemonDataBeforeRedirect(pokemonID);
+            if (success) {
+                window.location.href = `./detail.html?id=${pokemonID}`;
+            }
+        });
+
+        listWrapper.appendChild(listItem);
+    });
+}
