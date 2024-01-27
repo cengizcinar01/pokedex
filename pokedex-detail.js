@@ -8,4 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (id < 1 || id > MAX_POKEMONS) {
         return (window.location.href = '/index.html');
     }
+
+    currentPokemonId = id;
+    loadPokemon(id);
 });
+
+async function loadPokemon(id) {
+    try {
+        return true;
+    } catch (error) {
+        console.log('An error occurred while fetching Pokemon data:', error);
+        return false;
+    }
+}
