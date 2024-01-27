@@ -41,6 +41,7 @@ async function loadPokemon(id) {
                         navigatePokemon(id + 1);
                     });
             }
+            window.history.pushState({}, "", `/detail.html?id=${id}`)
         }
 
         return true;
