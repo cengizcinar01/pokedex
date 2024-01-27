@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const id = parseInt(pokemonID, 10);
 
     if (id < 1 || id > MAX_POKEMONS) {
-        return (window.location.href = '/index.html');
+        return (window.location.href = './index.html');
     }
 
     currentPokemonId = id;
@@ -36,17 +36,24 @@ async function loadPokemon(id) {
                 leftArrow.addEventListener('click', () => {
                     navigatePokemon(id - 1);
                 });
-                if (id !== 151) {
-                    rightArrow.addEventListener('click', () => {
-                        navigatePokemon(id + 1);
-                    });
             }
-            window.history.pushState({}, "", `/detail.html?id=${id}`)
+            if (id !== 151) {
+                rightArrow.addEventListener('click', () => {
+                    navigatePokemon(id + 1);
+                });
+            }
+
+            window.history.pushState({}, '', `./detail.html?id=${id}`);
         }
 
         return true;
     } catch (error) {
-        console.log('An error occurred while fetching Pokemon data:', error);
+        console.error('An error occured while fetching Pokemon data:', error);
         return false;
     }
+}
+
+async function navigatePokemon(id) {
+    currentPokemonId = id;
+    await loadPokemon(id);
 }
