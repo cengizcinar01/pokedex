@@ -27,6 +27,20 @@ async function loadPokemon(id) {
             displayPokemonDetails(pokemon);
             const flavorText = getEnglishFlavorText(pokemonSpecies);
             document.querySelector('.body3-fonts.pokemon-description').textContent = flavorText;
+
+            const [leftArrow, rightArrow] = ['#leftArrow', '#rightArrow'].map((sel) => document.querySelector(sel));
+            leftArrow.removeEventListener('click', navigatePokemon);
+            rightArrow.removeEventListener('click', navigatePokemon);
+
+            if (id !== 1) {
+                leftArrow.addEventListener('click', () => {
+                    navigatePokemon(id - 1);
+                });
+                if (id !== 151) {
+                    rightArrow.addEventListener('click', () => {
+                        navigatePokemon(id + 1);
+                    });
+            }
         }
 
         return true;
