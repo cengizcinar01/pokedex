@@ -71,5 +71,15 @@ function handleSearch() {
         filteredPokemons = allPokemons.filter((pokemon) => {
             pokemon.name.toLowerCase().startsWith(searchTerm);
         });
+    } else {
+        filteredPokemons = allPokemons;
+    }
+
+    displayPokemons(filteredPokemons);
+
+    if (filteredPokemons.length === 0) {
+        notFoundMessage.style.display = 'block';
+    } else {
+        notFoundMessage.style.display = 'none';
     }
 }
