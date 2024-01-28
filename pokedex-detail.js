@@ -130,3 +130,33 @@ function createAndAppendElement(parent, tag, options = {}) {
     parent.appendChild(element);
     return element;
 }
+
+function displayPokemonDetails(pokemon) {
+    const { name, id, types, weight, height, abilities, stats } = pokemon;
+    const capitalizedPokemonName = capitalizeFirstLetter(name);
+
+    const titleElement = document.querySelector('title');
+    const detailMainElement = document.querySelector('.detail-main');
+    const nameElement = document.querySelector('.name-wrap .name');
+    const idElement = document.querySelector('.pokemon-id-wrap .body2-fonts');
+    const imageElement = document.querySelector('.detail-img-wrapper img');
+    const typeWrapper = document.querySelector('.power-wrapper');
+    const weightElement = document.querySelector('.pokemon-detail-wrap .pokemon-detail p.body3-fonts.weight');
+    const heightElement = document.querySelector('.pokemon-detail-wrap .pokemon-detail p.body3-fonts.height');
+    const abilitiesWrapper = document.querySelector('.pokemon-detail-wrap .pokemon-detail.move');
+    const statsWrapper = document.querySelector('.stats-wrapper');
+
+    titleElement.textContent = capitalizedPokemonName;
+    detailMainElement.classList.add(name.toLowerCase());
+    nameElement.textContent = capitalizedPokemonName;
+    idElement.textContent = `#${String(id).padStart(3, '0')}`;
+    imageElement.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`;
+    imageElement.alt = name;
+
+    updateTypes(typeWrapper, types);
+    updateWeightAndHeight(weightElement, heightElement, weight, height);
+    updateAbilities(abilitiesWrapper, abilities);
+    updateStats(statsWrapper, stats);
+
+    setTypeBackgroundColor(pokemon);
+}
