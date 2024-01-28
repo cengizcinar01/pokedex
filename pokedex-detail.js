@@ -160,3 +160,8 @@ function displayPokemonDetails(pokemon) {
 
     setTypeBackgroundColor(pokemon);
 }
+
+function updateTypes(container, types) {
+    container.innerHTML = '';
+    types.forEach(({ type }) => createAndAppendElement(container, 'p', { className: `body3-fonts type ${type.name}`, textContent: type.name }));
+}
