@@ -99,4 +99,9 @@ function setTypeBackgroundColor(pokemon) {
     }
     const detailMainElement = document.querySelector('.detail-main');
     setElementStyles([detailMainElement], 'backgroundColor', color);
+    setElementStyles([detailMainElement], 'borderColor', color);
+
+    setElementStyles(document.querySelectorAll('.power-wrapper > p'), 'backgroundColor', color);
+    setElementStyles(document.querySelectorAll('.stats-wrapper > p.stats'), 'color', color);
+    setElementStyles(document.querySelectorAll('.stats-wrap > .progress-bar'), 'color', color);
 }
