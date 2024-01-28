@@ -88,3 +88,15 @@ function setElementStyles(elements, cssProperty, value) {
 function rgbaFromHex(hexColor) {
     return [parseInt(hexColor.slice(1, 3), 16), parseInt(hexColor.slice(3, 5), 16), parseInt(hexColor.slice(5, 7), 16)].join(', ');
 }
+
+function setTypeBackgroundColor(pokemon) {
+    const mainType = pokemon.types[0].type.name;
+    const color = typeColors[mainType];
+
+    if (!color) {
+        console.warn(`No color defined for type ${mainType}`);
+        return;
+    }
+    const detailMainElement = document.querySelector('.detail-main');
+    setElementStyles([detailMainElement], 'backgroundColor', color);
+}
