@@ -117,3 +117,16 @@ function setTypeBackgroundColor(pokemon) {
     `;
     document.head.appendChild(styleTag);
 }
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
+
+function createAndAppendElement(parent, tag, options = {}) {
+    const element = document.createElement(tag);
+    Object.keys(options).forEach((key) => {
+        element[key] = options[key];
+    });
+    parent.appendChild(element);
+    return element;
+}
