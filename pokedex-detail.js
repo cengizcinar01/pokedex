@@ -172,5 +172,19 @@ function updateWeightAndHeight(weightElement, heightElement, weight, height) {
 }
 
 function updateAbilities(container, abilities) {
-    abilities.forEach(({ ability }) => createAndAppendElement(container, "p", { className: "body3-fonts", textContent: ability.name }));
-  }
+    abilities.forEach(({ ability }) => createAndAppendElement(container, 'p', { className: 'body3-fonts', textContent: ability.name }));
+}
+
+function updateStats(container, stats) {
+    container.innerHTML = '';
+    const statNameMapping = { hp: 'HP', attack: 'ATK', defense: 'DEF', 'special-attack': 'SATK', 'special-defense': 'SDEF', speed: 'SPD' };
+    stats.forEach(({ stat, base_stat }) => {
+        const statDiv = document.createElement('div');
+        statDiv.className = 'stats-wrap';
+        container.appendChild(statDiv);
+
+        createAndAppendElement(statDiv, 'p', { className: 'body3-fonts stats', textContent: statNameMapping[stat.name] });
+        createAndAppendElement(statDiv, 'p', { className: 'body3-fonts', textContent: String(base_stat).padStart(3, '0') });
+        createAndAppendElement(statDiv, 'progress', { className: 'progress-bar', value: base_stat, max: 100 });
+    });
+}
