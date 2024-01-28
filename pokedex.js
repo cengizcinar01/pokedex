@@ -11,7 +11,7 @@ fetch(`https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMON}`)
     .then((response) => response.json())
     .then((data) => {
         allPokemons = data.results;
-        console.log(data);
+        displayPokemons(allPokemons);
     });
 
 async function fetchPokemonDataBeforeRedirect(id) {
@@ -34,16 +34,16 @@ function displayPokemons(pokemon) {
         const listItem = document.createElement('div');
         listItem.className = 'list-item';
         listItem.innerHTML = `
-          <div class="number-wrap">
-              <p class="caption-fonts">#${pokemonID}</p>
-          </div>
-          <div class="img-wrap">
-              <img src="https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/pokemon/other/dream-world/${pokemonID}.svg" alt="${pokemon.name}" />
-          </div>
-          <div class="name-wrap">
-              <p class="body3-fonts">#${pokemon.name}</p>
-          </div>
-      `;
+        <div class="number-wrap">
+            <p class="caption-fonts">#${pokemonID}</p>
+        </div>
+        <div class="img-wrap">
+            <img src="https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/pokemon/other/dream-world/${pokemonID}.svg" alt="${pokemon.name}" />
+        </div>
+        <div class="name-wrap">
+            <p class="body3-fonts">#${pokemon.name}</p>
+        </div>
+    `;
 
         listItem.addEventListener('click', async () => {
             const success = await fetchPokemonDataBeforeRedirect(pokemonID);
@@ -68,9 +68,7 @@ function handleSearch() {
             return pokemonID.startsWith(searchTerm);
         });
     } else if (nameFilter.checked) {
-        filteredPokemons = allPokemons.filter((pokemon) => {
-            pokemon.name.toLowerCase().startsWith(searchTerm);
-        });
+        filteredPokemons = allPokemons.filter((pokemon) => pokemon.name.toLowerCase().startsWith(searchTerm));
     } else {
         filteredPokemons = allPokemons;
     }
