@@ -93,3 +93,42 @@ body {
     align-items: center;
     gap: 1rem;
 }
+
+.header.home {
+    width: 90%;
+}
+
+.container {
+    width: 100%;
+    margin: 0;
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.logo-wrapper>h1 {
+    color: var(--grayscale-white);
+}
+
+.logo-wrapper>img {
+    margin-right: 16px;
+}
+
+.search-wrapper,
+.search-wrap {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 16px;
+}
+
+.search-wrap {
+    position: relative;
+    background-color: var(--grayscale-white);
+    border-radius: 16px;
+    box-shadow: var(--drop-shadow-inner);
+    height: 32px;
+    gap: 8px;
+}
