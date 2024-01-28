@@ -165,3 +165,8 @@ function updateTypes(container, types) {
     container.innerHTML = '';
     types.forEach(({ type }) => createAndAppendElement(container, 'p', { className: `body3-fonts type ${type.name}`, textContent: type.name }));
 }
+
+function updateWeightAndHeight(weightElement, heightElement, weight, height) {
+    weightElement.textContent = `${weight / 10}kg`;
+    heightElement.textContent = `${height / 10}m`;
+}
