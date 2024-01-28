@@ -1,30 +1,29 @@
 const inputElement = document.querySelector('#search-input');
-const searchIcon = document.querySelector('#search-close-icon');
-const sortWrapper = document.querySelector('.sort-wrapper');
+const search_icon = document.querySelector('#search-close-icon');
+const sort_wrapper = document.querySelector('.sort-wrapper');
 
-inputElement.addEventListener('input', () => handleInputChange(inputElement));
-searchIcon.addEventListener('click', handleSearchCloseOnClick);
-sortWrapper.addEventListener('click', handleSortIconOnClick);
+inputElement.addEventListener('input', () => {
+    handleInputChange(inputElement);
+});
+search_icon.addEventListener('click', handleSearchCloseOnClick);
+sort_wrapper.addEventListener('click', handleSortIconOnClick);
 
 function handleInputChange(inputElement) {
     const inputValue = inputElement.value;
-    const searchCloseIcon = document.querySelector('#search-close-icon');
 
-    searchCloseIcon.classList.toggle('search-close-icon-visible', inputValue !== '');
+    if (inputValue !== '') {
+        document.querySelector('#search-close-icon').classList.add('search-close-icon-visible');
+    } else {
+        document.querySelector('#search-close-icon').classList.remove('search-close-icon-visible');
+    }
 }
-
-const searchInput = document.querySelector('#search-input');
-const searchCloseIcon = document.querySelector('#search-close-icon');
 
 function handleSearchCloseOnClick() {
-    searchInput.value = '';
-    searchCloseIcon.classList.remove('search-close-icon-visible');
+    document.querySelector('#search-input').value = '';
+    document.querySelector('#search-close-icon').classList.remove('search-close-icon-visible');
 }
 
-const filterWrapper = document.querySelector('.filter-wrapper');
-const bodyElement = document.querySelector('body');
-
 function handleSortIconOnClick() {
-    filterWrapper.classList.toggle('filter-wrapper-open');
-    bodyElement.classList.toggle('filter-wrapper-overlay');
+    document.querySelector('.filter-wrapper').classList.toggle('filter-wrapper-open');
+    document.querySelector('body').classList.toggle('filter-wrapper-overlay');
 }
