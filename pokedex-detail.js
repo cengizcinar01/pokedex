@@ -170,3 +170,7 @@ function updateWeightAndHeight(weightElement, heightElement, weight, height) {
     weightElement.textContent = `${weight / 10}kg`;
     heightElement.textContent = `${height / 10}m`;
 }
+
+function updateAbilities(container, abilities) {
+    abilities.forEach(({ ability }) => createAndAppendElement(container, "p", { className: "body3-fonts", textContent: ability.name }));
+  }
