@@ -26,34 +26,38 @@ async function fetchPokemonDataBeforeRedirect(id) {
     }
 }
 
-function displayPokemons(pokemon) {
+async function displayPokemons(pokemons) {
     listWrapper.innerHTML = '';
 
-    pokemon.forEach((pokemon) => {
+    for (const pokemon of pokemons) {
         const pokemonID = pokemon.url.split('/')[6];
         const listItem = document.createElement('div');
         listItem.className = 'list-item';
         listItem.innerHTML = `
-        <div class="number-wrap">
-            <p class="caption-fonts">#${pokemonID}</p>
-        </div>
-        <div class="img-wrap">
-            <img src="https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/pokemon/other/dream-world/${pokemonID}.svg" alt="${pokemon.name}" />
-        </div>
-        <div class="name-wrap">
-            <p class="body3-fonts">#${pokemon.name}</p>
-        </div>
-    `;
+            <div class="number-wrap">
+                <p class="caption-fonts">#${pokemonID}</p>
+            </div>
+            <div class="img-wrap">
+                <img src="https://raw.githubusercontent.com/pokeapi/sprites/master/sprites/pokemon/other/dream-world/${pokemonID}.svg" alt="${pokemon.name}" />
+            </div>
+            <div class="name-wrap">
+                <p class="body3-fonts">${pokemon.name}</p>
+            </div>
+        `;
 
         listItem.addEventListener('click', async () => {
-            const success = await fetchPokemonDataBeforeRedirect(pokemonID);
-            if (success) {
-                window.location.href = `./detail.html?id=${pokemonID}`;
+            try {
+                const success = await fetchPokemonDataBeforeRedirect(pokemonID);
+                if (success) {
+                    window.location.href = `./detail.html?id=${pokemonID}`;
+                }
+            } catch (error) {
+                console.error('Failed to fetch Pokémon data', error);
             }
         });
 
         listWrapper.appendChild(listItem);
-    });
+    }
 }
 
 searchInput.addEventListener('keyup', handleSearch);
